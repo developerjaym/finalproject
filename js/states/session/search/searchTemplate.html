@@ -1,0 +1,28 @@
+<div class="jay-box">
+        <div class="formtitle">Search</div>
+        <div class="formsubtitle">Today's Flights</div>
+        <div class="formbody searchbody">
+                <div class="dropdown">
+                        <button class="form-text search-text" ng-model="$ctrl.content">{{$ctrl.content.from || "From"}}</button>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                        <div class="dropdown-content">
+                                <a class="jay-a" ng-click="$ctrl.content.setFrom('MEMPHIS')">MEMPHIS</a>
+                                <a class="jay-a" ng-click="$ctrl.content.setFrom('KNOXVILLE')">KNOXVILLE</a>
+                                <a class="jay-a" ng-click="$ctrl.content.setFrom('NASHVILLE')">NASHVILLE</a>
+                                <a class="jay-a" ng-click="$ctrl.content.setFrom('CHATTANOOGA')">CHATTANOOGA</a>
+                        </div>
+                </div>
+                <div>⇨</div>
+                <div class="dropdown">
+                        <button class="form-text search-text" ng-model="$ctrl.content">{{$ctrl.content.to || "To"}}</button>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                        <div class="dropdown-content">
+                                <a class="jay-a" ng-click="$ctrl.content.setTo('MEMPHIS')">MEMPHIS</a>
+                                <a class="jay-a" ng-click="$ctrl.content.setTo('KNOXVILLE')">KNOXVILLE</a>
+                                <a class="jay-a" ng-click="$ctrl.content.setTo('NASHVILLE')">NASHVILLE</a>
+                                <a class="jay-a" ng-click="$ctrl.content.setTo('CHATTANOOGA')">CHATTANOOGA</a>
+                        </div>
+                </div>
+        </div>
+        <div class="formfooter"> <button type="submit" class="formbutton" ng-click="$ctrl.search()">Search</button></div>
+</div>

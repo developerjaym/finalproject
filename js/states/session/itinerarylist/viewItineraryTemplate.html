@@ -1,0 +1,35 @@
+<div class="jay-box" ng-repeat="itinerary in $ctrl.itineraries">
+	<div class="formtitle">
+		Itinerary
+		<div class="formsubtitle">
+			<div>Origin to Destination</div>
+		</div>
+	</div>
+	<div class="formbody">
+		<div>
+			Total flight time
+		</div>
+		<div>
+			Total layover time
+		</div>
+	</div>
+
+	<div ng-repeat="flight in itinerary.flights">
+		<div class="formtitle">
+			Then
+			<div class="formsubtitle">
+				<div>{{flight.flightTime}} hours</div>
+			</div>
+		</div>
+		<div class="formbody">
+			<div>{{flight.origin | uppercase}} ⇨ {{flight.destination | uppercase}}</div>
+
+			<div>{{flight.offset}}:00pm ⇨ {{$ctrl.getArrivalTime(flight)}}:00pm</div>
+
+		</div>
+	</div>
+	<div class="formfooter">
+		<button class="formbutton">Book It (if searching for flights)</button>
+		<button class="formbutton">View Map</button>
+	</div>
+</div>

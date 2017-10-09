@@ -1,0 +1,17 @@
+<div class="jay-box">
+    <div class="formtitle">Create New Acccount
+        <div class="formsubtitle">*required</div>
+    </div>
+
+    <div class="formbody">
+
+        <div>Username*</div> <input type="text" class="form-text" ng-style="{'border-color': $ctrl.usernameErrorCss }" ng-model="$ctrl.submission.username">
+        <div>Password*</div> <input type="password" class="form-text" ng-style="{'border-color': $ctrl.passwordErrorCss }" ng-model="$ctrl.submission.password" ng-keyup="$event.keyCode == 13 && $ctrl.createNewUser()">
+        
+    </div>
+<div class="formfooter">
+    <button class='formbutton' ng-click='$ctrl.createNewCustomer()'>Create Account</button>
+</div>
+<button class='btn btn-link' id='existingAccount' ui-sref='title.login'>Already have an account?</button>
+
+</div>

@@ -1,0 +1,24 @@
+<div class="sessionPanel2 ">
+    <div class="changeArea">
+        <div class="sessionTitle2 ">
+            {{ $ctrl.userDataService.sessionTitle }}
+        </div>
+        <div class="sessionPanel3">
+            <ui-view></ui-view>
+        </div>
+
+    </div>
+
+    <div class="sessionFixedColumn ">
+        <!-- <button type="button" class="jnavbutton welcome">Flight App</button> -->
+        <button type="button" class="jnavbutton" ng-click="alert('Not Yet Implemented')" title="Edit Account"><span class=" glyphicon glyphicon-user"></span>{{$ctrl.userDataService.credentials.username}}</button>
+        
+        <button type="button" class="jnavbutton" ng-click="$ctrl.logout()" title="logout"><span class=" glyphicon glyphicon-log-out"></span> Logout</button>
+        <button type="button" class="jnavbutton" ng-click="$ctrl.search()"><span class="glyphicon glyphicon-search"></span> Search Flights</button>
+        
+        <button type="button" class="jnavbutton" ng-click="$ctrl.viewFlights()"><span class=" glyphicon glyphicon-plane"></span> Browse All Flights</button>
+        <button type="button" class="jnavbutton" ng-click="$ctrl.viewHistory()"><span class="glyphicon glyphicon-header"></span> View History</button>
+        
+    </div>
+
+</div>

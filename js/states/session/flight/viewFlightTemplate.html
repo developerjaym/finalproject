@@ -1,0 +1,18 @@
+
+<div class="jay-box" ng-repeat="flight in $ctrl.flights">
+	<div class="formtitle">
+            {{flight.offset}}:00pm - {{$ctrl.getArrivalTime(flight)}}:00pm
+		<div class="formsubtitle">
+            <div>{{flight.flightTime}} hours</div>
+		</div>
+	</div>
+	<div class="formbody">
+		<div>{{flight.origin | uppercase}}</div>
+        <div>⇨</div>
+        <div>{{flight.destination | uppercase}}</div>
+		
+	</div>
+	<div class="formfooter">
+		<button class="formbutton">Book It</button>
+	</div>
+</div>
