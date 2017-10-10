@@ -6,21 +6,28 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-public class FlightEntity {
+public class Flightentity {
 
 	@Id
 	@GeneratedValue
 	private Long id;
-	private Location origin;
-	private Location destination;
+//	@ManyToOne
+//	@JoinColumn(name="start_id")
+//	private Location start;
+//	@ManyToOne
+//	@JoinColumn(name="destination_id")
+//	private Location destination;
 	private long flightTime;
 	private long offset;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany//(cascade = CascadeType.ALL)
 	@JoinTable 
 	private List<Itinerary> itineraries;
 	public Long getId() {
@@ -29,18 +36,18 @@ public class FlightEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Location getOrigin() {
-		return origin;
-	}
-	public void setOrigin(Location origin) {
-		this.origin = origin;
-	}
-	public Location getDestination() {
-		return destination;
-	}
-	public void setDestination(Location destination) {
-		this.destination = destination;
-	}
+//	public Location getOrigin() {
+//		return start;
+//	}
+//	public void setOrigin(Location origin) {
+//		this.start = origin;
+//	}
+//	public Location getDestination() {
+//		return destination;
+//	}
+//	public void setDestination(Location destination) {
+//		this.destination = destination;
+//	}
 	public long getFlightTime() {
 		return flightTime;
 	}
@@ -74,7 +81,7 @@ public class FlightEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FlightEntity other = (FlightEntity) obj;
+		Flightentity other = (Flightentity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

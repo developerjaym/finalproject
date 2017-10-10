@@ -3,7 +3,7 @@ package com.cooksys.dto;
 public class FlightDto {
 	
 	private LocationDto origin;
-	private LocationDto location;
+	private LocationDto destination;
 	private long flightTime;
 	private long offset;
 	public LocationDto getOrigin() {
@@ -12,11 +12,12 @@ public class FlightDto {
 	public void setOrigin(LocationDto origin) {
 		this.origin = origin;
 	}
-	public LocationDto getLocation() {
-		return location;
+	
+	public LocationDto getDestination() {
+		return destination;
 	}
-	public void setLocation(LocationDto location) {
-		this.location = location;
+	public void setDestination(LocationDto destination) {
+		this.destination = destination;
 	}
 	public long getFlightTime() {
 		return flightTime;

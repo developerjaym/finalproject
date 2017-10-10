@@ -19,8 +19,8 @@ public class Customer {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "credentials_username")
+//	@OneToOne(cascade = {CascadeType.ALL})
+//	@JoinColumn(name = "credentials_username")
 	@Embedded
 	private Credentials credentials;
 	@OneToMany(mappedBy="customer")

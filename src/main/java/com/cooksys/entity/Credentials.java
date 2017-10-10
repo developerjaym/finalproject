@@ -4,13 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
-@Entity
 @Embeddable
 public class Credentials {
 
 
 	@Column(nullable = false, unique = true)
-	private String username;//specifications say this should be part of read-only form. I'm not sure why we would have a Dao for credentials
+	private String username;
 	@Column(nullable = false)
 	private String password;
 	/**

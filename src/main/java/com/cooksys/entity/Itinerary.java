@@ -15,7 +15,7 @@ public class Itinerary {
 	private Long id;
 	
 	@ManyToMany(mappedBy = "itineraries")
-	private List<FlightEntity> flights;
+	private List<Flightentity> flights;
 	
 	@ManyToOne
 	private Customer customer;
@@ -28,11 +28,11 @@ public class Itinerary {
 		this.id = id;
 	}
 
-	public List<FlightEntity> getFlights() {
+	public List<Flightentity> getFlights() {
 		return flights;
 	}
 
-	public void setFlights(List<FlightEntity> flights) {
+	public void setFlights(List<Flightentity> flights) {
 		this.flights = flights;
 	}
 

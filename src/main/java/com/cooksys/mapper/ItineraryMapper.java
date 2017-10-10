@@ -16,5 +16,7 @@ public interface ItineraryMapper {
 	Itinerary toItinerary(ItineraryDtoIn itineraryDtoIn);
 
 	ItineraryDtoOut toDtoOut(Itinerary itinerary);
+	
+	ItineraryDtoOut toDtoOut(ItineraryDtoIn itineraryDtoIn);
 
 }
