@@ -53,11 +53,11 @@ angular.module('flightApp', ['ui.router', 'xeditable']).run(function (editableOp
         //     component: 'resultsComponent' or maybe 'viewItineraryComponent'
         // }
 
-        // const mapState = {
-        //     name: 'session.map',
-        //     url: '/map',
-        //     component: 'mapComponent'
-        // }
+        const mapState = {
+            name: 'session.map',
+            url: '/map',
+            component: 'mapComponent'
+        }
 
         $stateProvider.state(titleState)
             .state(loginState)
@@ -67,9 +67,9 @@ angular.module('flightApp', ['ui.router', 'xeditable']).run(function (editableOp
             .state(searchState)
             .state(historyState)
             // .state(resultsState)
-            // .state(mapState)
+            .state(mapState)
 
         // $urlRouterProvider.otherwise('/title/login')
-        $urlRouterProvider.otherwise('/session/search')
+        $urlRouterProvider.otherwise('/session/map')
     }
 ])

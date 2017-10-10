@@ -7,6 +7,7 @@ angular.module('flightApp').controller('viewFlightController', ['viewFlightServi
         
         // this.username = userDataService.credentials.getUsername()
         this.flights = []
+
         viewFlightService.getFlightList().then((succeedResponse)=>{
             console.dir("FLIGHTS: " + succeedResponse.data)
             this.flights = succeedResponse.data
@@ -18,10 +19,6 @@ angular.module('flightApp').controller('viewFlightController', ['viewFlightServi
 
         $interval(()=>{this.reload()}, 500000);
         
-        this.someFunction = ()=>
-        {
-            console.dir("something something something")
-        }
 
         this.reload = () =>{
             viewFlightService.getFlightList().then((succeedResponse)=>{

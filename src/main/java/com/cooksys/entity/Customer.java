@@ -1,5 +1,7 @@
 package com.cooksys.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,24 +10,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Location")
-public class Location {
-
+public class Customer {
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	@Column(name = "username", unique=true)
+	private String username;
 
-	@Column(name = "longitude")
-	private String longitude;
-
-	@Column(name = "latitude")
-	private String latitude;
+	@Column(name = "password")
+	private String password;
 
 	@Column(name = "city")
-	private String city;
-
-	public Location() {
-
-	}
+	private List<Itinerary> history;
 
 	public long getId() {
 		return id;
@@ -35,28 +32,28 @@ public class Location {
 		this.id = id;
 	}
 
-	public String getLongitude() {
-		return longitude;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getLatitude() {
-		return latitude;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getCity() {
-		return city;
+	public List<Itinerary> getHistory() {
+		return history;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setHistory(List<Itinerary> history) {
+		this.history = history;
 	}
 
 	@Override
@@ -75,19 +72,12 @@ public class Location {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Location other = (Location) obj;
+		Customer other = (Customer) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-
-	public Location(long id, String longitude, String latitude, String city) {
-		super();
-		this.id = id;
-		this.longitude = longitude;
-		this.latitude = latitude;
-		this.city = city;
-	}
-
 	
+	
+
 }

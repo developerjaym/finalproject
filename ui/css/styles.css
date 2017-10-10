@@ -364,7 +364,8 @@ strong {
 }
 
 ::selection {
-    background-color: rgb(99, 138, 23);
+    /* background-color: rgb(99, 138, 23); */
+    background-color: rgb(255, 178, 139);
     color: #fff;
 }
 .glyphicon

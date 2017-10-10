@@ -72,7 +72,10 @@ angular.module('flightApp').service('userDataService', ['$state', function ($sta
                 break;     
             case 'session.results':
                 this.setSessionTitle('Search Results')
-                break;       
+                break;
+            case 'session.map':
+                this.setSessionTitle('Map')
+                break;           
             default:
                 break;
         }
