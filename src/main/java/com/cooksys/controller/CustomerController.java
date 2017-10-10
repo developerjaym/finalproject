@@ -1,6 +1,6 @@
 package com.cooksys.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cooksys.entity.Customer;
-import com.cooksys.entity.Itinerary;
-import com.cooksys.pojo.Flight;
+import com.cooksys.dto.CredentialsDto;
+import com.cooksys.dto.ItineraryDtoIn;
+import com.cooksys.dto.ItineraryDtoOut;
 import com.cooksys.service.CustomerService;
-import com.cooksys.service.FlightService;
-import com.cooksys.service.LocationService;
 
 @RestController
 @RequestMapping("flights")
@@ -26,27 +24,38 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 	
-//	@RequestMapping(method = RequestMethod.POST)
-//	public boolean login(@RequestBody Credentials credentials, HttpServletResponse response)
-//	{
-//		boolean successful = customerService.login(customer);
-//		if(!successful)
-//			response.setStatus(404);
-//		return false;
-//	}
-//	@RequestMapping(value="create", method = RequestMethod.POST)
-//	public boolean createAccount(@RequestBody Credentials credentials, HttpServletResponse response)
-//	{
-//		boolean successful = customerService.createAccount(credentials);
-//		if(!successful)
-//			response.setStatus(404);
-//		return false;
-//	}
-//	@RequestMapping(value="itinerary", method = RequestMethod.POST)
-//	public Itinerary addItinerary(@RequestBody Itinerary itinerary, HttpServletResponse response)
-//	{
-//		
-//		return null;
-//	}
+	@RequestMapping(value="login", method = RequestMethod.POST)
+	public boolean login(@RequestBody CredentialsDto credentialsDto, HttpServletResponse response)
+	{
+		boolean successful = customerService.login(credentialsDto);
+		if(!successful)
+			response.setStatus(404);
+		return false;
+	}
+	@RequestMapping(value="create", method = RequestMethod.POST)
+	public boolean createAccount(@RequestBody CredentialsDto credentialsDto, HttpServletResponse response)
+	{
+		boolean successful = customerService.createAccount(credentialsDto);
+		if(!successful)
+			response.setStatus(404);
+		return false;
+	}
+	@RequestMapping(value="history", method = RequestMethod.POST)
+	public List<ItineraryDtoOut> getHistory(@RequestBody CredentialsDto credentialsDto, HttpServletResponse response)
+	{
+		List<ItineraryDtoOut> results = customerService.getHistory(credentialsDto);
+		if(results == null || results.isEmpty())
+			response.setStatus(404);
+		return results;
+	}
+	@RequestMapping(value="itinerary", method = RequestMethod.POST)
+	public ItineraryDtoOut addItinerary(@RequestBody ItineraryDtoIn itineraryDtoIn, HttpServletResponse response)
+	{
+		ItineraryDtoOut result = customerService.addItinerary(itineraryDtoIn);
+		if(result == null)
+			response.setStatus(404);
+		return result;
+	}
+	
 	
 }

@@ -1,41 +1,44 @@
 package com.cooksys.entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
-@Table(name = "flight")
 public class FlightEntity {
-	
+
 	@Id
 	@GeneratedValue
-	private long id;
-	
-	@Column(name = "origin")
-	private String origin;
-	
-	@Column(name = "destination")
-	private String destination;
-	
-	@Column(name = "flightTime")
+	private Long id;
+	private Location origin;
+	private Location destination;
 	private long flightTime;
-	
-	@Column(name = "offset")
 	private long offset;
 	
-	public String getOrigin() {
-		return origin.toUpperCase();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable 
+	private List<Itinerary> itineraries;
+	public Long getId() {
+		return id;
 	}
-	public void setOrigin(String origin) {
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Location getOrigin() {
+		return origin;
+	}
+	public void setOrigin(Location origin) {
 		this.origin = origin;
 	}
-	public String getDestination() {
-		return destination.toUpperCase();
+	public Location getDestination() {
+		return destination;
 	}
-	public void setDestination(String destination) {
+	public void setDestination(Location destination) {
 		this.destination = destination;
 	}
 	public long getFlightTime() {
@@ -50,11 +53,17 @@ public class FlightEntity {
 	public void setOffset(long offset) {
 		this.offset = offset;
 	}
+	public List<Itinerary> getItineraries() {
+		return itineraries;
+	}
+	public void setItineraries(List<Itinerary> itineraries) {
+		this.itineraries = itineraries;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 	@Override
@@ -66,12 +75,13 @@ public class FlightEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		FlightEntity other = (FlightEntity) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 	
 	
-
 }
-
