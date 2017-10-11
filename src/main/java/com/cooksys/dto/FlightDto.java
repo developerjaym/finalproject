@@ -6,6 +6,16 @@ public class FlightDto {
 	private String destination;
 	private long flightTime;
 	private long departuretime;
+	
+	
+	public FlightDto(){}
+	
+	public FlightDto(String origin, String destination, int flightTime, int departuretime) {
+		this.origin = origin;
+		this.destination = destination;
+		this.flightTime = flightTime;
+		this.departuretime = departuretime;
+	}
 	public String getOrigin() {
 		return origin;
 	}

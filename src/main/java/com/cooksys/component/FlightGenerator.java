@@ -5,15 +5,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Component;
 
+import com.cooksys.dto.FlightDto;
 import com.cooksys.pojo.Cities;
 import com.cooksys.pojo.Flight;
 
 @Component
 public class FlightGenerator {
 
-	public ArrayList<Flight> generateNewFlightList() {
+	public ArrayList<FlightDto> generateNewFlightList() {
 		
-		ArrayList<Flight> result = new ArrayList<>();
+		ArrayList<FlightDto> result = new ArrayList<>();
 
 		for (int i = 0; i < 5; i++) {
 
@@ -29,7 +30,7 @@ public class FlightGenerator {
 			int flightTime = ThreadLocalRandom.current().nextInt(1, 4);
 			int offset = ThreadLocalRandom.current().nextInt(0, 10);
 
-			Flight f = new Flight(origin, destination, flightTime, offset);
+			FlightDto f = new FlightDto(origin, destination, flightTime, offset);
 
 			result.add(f);
 		}
