@@ -48,10 +48,7 @@ label {
     flex-direction: column;
 }
 
-.welcome {
-    display: flex;
-    justify-content: center;
-}
+
 /* 
 .search {
 } */
@@ -137,9 +134,9 @@ label {
 .jay-box{
     color: white;
     border-radius: 2vh;
-    background-color: rgb(4, 92, 120);
-    /* background: radial-gradient(rgba(8, 37, 105, 0.9), rgba(4, 92, 120, 0.82)); */
+    background-color: rgb(73, 78, 98);
     box-shadow: 0px 0px 2px rgba(255, 219, 137, 0.95);
+    /* background: radial-gradient(rgba(73, 78, 98, 0.98), #9ea49a); */
     background: radial-gradient(rgba(73, 78, 98, 0.98), rgba(164, 154, 158, 0.95));
     display: flex;
     flex-direction: column;

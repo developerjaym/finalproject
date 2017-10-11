@@ -82,7 +82,6 @@ angular.module('flightApp').controller('sessionController', ['userDataService', 
         }
 
         this.viewHistory = () => {
-            alert("not yet implemented")
             userDataService.reloadIfNecessary('session.history')
         }
 

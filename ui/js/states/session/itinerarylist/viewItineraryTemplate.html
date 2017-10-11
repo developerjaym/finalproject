@@ -7,10 +7,10 @@
 	</div>
 	<div class="formbody">
 		<div>
-			Total flight time
+			Total flight time: {{$ctrl.getTotalFlightTime(itinerary)}}
 		</div>
 		<div>
-			Total layover time
+			Total layover time: {{$ctrl.getTotalLayoverTime(itinerary)}}
 		</div>
 	</div>
 
@@ -24,12 +24,12 @@
 		<div class="formbody">
 			<div>{{flight.origin | uppercase}} ⇨ {{flight.destination | uppercase}}</div>
 
-			<div>{{flight.offset}}:00pm ⇨ {{$ctrl.getArrivalTime(flight)}}:00pm</div>
+			<div>{{flight.departuretime}}:00pm ⇨ {{$ctrl.getArrivalTime(flight)}}:00pm</div>
 
 		</div>
 	</div>
 	<div class="formfooter">
-		<button class="formbutton">Book It (if searching for flights)</button>
+		<button class="formbutton" ng-click="$ctrl.bookIt(itinerary)">Book It (if searching for flights)</button>
 		<!-- <button class="formbutton" ng-click="$ctrl.viewMap(itinerary)">View Map</button> -->
 		<a class="formbutton" href="http://localhost:8080/other.html">View Map</a>
 	</div>

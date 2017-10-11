@@ -14,7 +14,7 @@ angular.module('flightApp').controller('viewFlightController', ['viewFlightServi
         })
 
         this.getArrivalTime = (flight)=>{
-            return flight.offset+flight.flightTime
+            return flight.departuretime+flight.flightTime
         }
 
         $interval(()=>{this.reload()}, 500000);

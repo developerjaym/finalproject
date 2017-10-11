@@ -1,17 +1,17 @@
 class Testflight
 {
-    constructor(offset, length, origin, destination)
+    constructor(departuretime, length, origin, destination)
     {
-        this.offset = offset;
+        this.departuretime = departuretime;
         this.length = length;
         this.origin = origin;
         this.destination = destination;
         this.flightname = "Flight: " + this.origin + " to " + this.destination;
-        this.landingtime =(this.offset+ this.length);
+        this.landingtime =(this.departuretime+ this.length);
     }
     toString()
     {
-        return this.origin + " to " + this.destination + "\n    " + this.offset + " to " + this.landingtime + "\n";
+        return this.origin + " to " + this.destination + "\n    " + this.departuretime + " to " + this.landingtime + "\n";
     }
 }
 
