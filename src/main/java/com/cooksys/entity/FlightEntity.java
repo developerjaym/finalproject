@@ -18,54 +18,64 @@ public class Flightentity {
 	@Id
 	@GeneratedValue
 	private Long id;
-//	@ManyToOne
-//	@JoinColumn(name="start_id")
-//	private Location start;
-//	@ManyToOne
-//	@JoinColumn(name="destination_id")
-//	private Location destination;
-	private long flightTime;
-	private long offset;
 	
-	@ManyToMany//(cascade = CascadeType.ALL)
-	@JoinTable 
-	private List<Itinerary> itineraries;
+	@ManyToOne
+	@JoinColumn(name="itinerary_id")
+	private Itinerary itinerary;
+
+	private String origin;
+	private String destination;
+	private long flightTime;
+	private long departuretime;
+	
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-//	public Location getOrigin() {
-//		return start;
-//	}
-//	public void setOrigin(Location origin) {
-//		this.start = origin;
-//	}
-//	public Location getDestination() {
-//		return destination;
-//	}
-//	public void setDestination(Location destination) {
-//		this.destination = destination;
-//	}
+
+	public Itinerary getItinerary() {
+		return itinerary;
+	}
+
+	public void setItinerary(Itinerary itinerary) {
+		this.itinerary = itinerary;
+	}
+
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
 	public long getFlightTime() {
 		return flightTime;
 	}
+
 	public void setFlightTime(long flightTime) {
 		this.flightTime = flightTime;
 	}
-	public long getOffset() {
-		return offset;
+
+	public long getDeparturetime() {
+		return departuretime;
 	}
-	public void setOffset(long offset) {
-		this.offset = offset;
+
+	public void setDeparturetime(long departuretime) {
+		this.departuretime = departuretime;
 	}
-	public List<Itinerary> getItineraries() {
-		return itineraries;
-	}
-	public void setItineraries(List<Itinerary> itineraries) {
-		this.itineraries = itineraries;
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,6 +83,7 @@ public class Flightentity {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -89,6 +100,12 @@ public class Flightentity {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Flightentity [origin=" + origin + ", destination=" + destination + ", flightTime=" + flightTime
+				+ ", departuretime=" + departuretime + "]";
+	}
 	
-	
+
 }

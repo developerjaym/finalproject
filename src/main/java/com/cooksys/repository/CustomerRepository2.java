@@ -18,14 +18,14 @@ public class CustomerRepository2 {
 	{
 		this.entityManager = entityManager;
 	}
-	@Transactional
-	public void updateHistory(Itinerary itinerary, Customer customer)
-	{
-		itinerary.setCustomer(customer);
+//	@Transactional
+//	public void updateHistory(Itinerary itinerary, Customer customer)
+//	{
+//		itinerary.setCustomer(customer);
 //		entityManager.persist(itinerary);
 //		entityManager.flush();
-		customer.getHistory().add(itinerary);
-		entityManager.persist(customer);
-		System.out.println(customer.getId() + "'s new history size " + customer.getHistory().size());
-	}
+//		customer.getHistory().add(itinerary);
+//		entityManager.persist(customer);
+//		System.out.println(customer.getId() + "'s new history size " + customer.getHistory().size());
+//	}
 }

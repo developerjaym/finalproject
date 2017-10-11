@@ -12,6 +12,11 @@ public class ItineraryDtoOut {
 	public void setFlights(List<FlightDto> flights) {
 		this.flights = flights;
 	}
+
+	@Override
+	public String toString() {
+		return "ItineraryDtoOut [flights=" + flights + "]";
+	}
 	
 	
 }

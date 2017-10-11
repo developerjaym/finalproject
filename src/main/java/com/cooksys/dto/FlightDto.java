@@ -2,21 +2,21 @@ package com.cooksys.dto;
 
 public class FlightDto {
 	
-	private LocationDto origin;
-	private LocationDto destination;
+	private String origin;
+	private String destination;
 	private long flightTime;
-	private long offset;
-	public LocationDto getOrigin() {
+	private long departuretime;
+	public String getOrigin() {
 		return origin;
 	}
-	public void setOrigin(LocationDto origin) {
+	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
 	
-	public LocationDto getDestination() {
+	public String getDestination() {
 		return destination;
 	}
-	public void setDestination(LocationDto destination) {
+	public void setDestination(String destination) {
 		this.destination = destination;
 	}
 	public long getFlightTime() {
@@ -25,11 +25,16 @@ public class FlightDto {
 	public void setFlightTime(long flightTime) {
 		this.flightTime = flightTime;
 	}
-	public long getOffset() {
-		return offset;
+	public long getDeparturetime() {
+		return departuretime;
 	}
-	public void setOffset(long offset) {
-		this.offset = offset;
+	public void setDeparturetime(long departuretime) {
+		this.departuretime = departuretime;
+	}
+	@Override
+	public String toString() {
+		return "FlightDto [origin=" + origin + ", destination=" + destination + ", flightTime=" + flightTime
+				+ ", departuretime=" + departuretime + "]";
 	}
 	
 	

@@ -2,11 +2,13 @@ package com.cooksys.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Itinerary {
@@ -14,12 +16,14 @@ public class Itinerary {
 	@GeneratedValue
 	private Long id;
 	
-	@ManyToMany(mappedBy = "itineraries")
-	private List<Flightentity> flights;
-	
 	@ManyToOne
 	private Customer customer;
-
+	
+	@OneToMany(mappedBy="itinerary", cascade=CascadeType.ALL)
+	private List<Flightentity> flights;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -28,20 +32,20 @@ public class Itinerary {
 		this.id = id;
 	}
 
-	public List<Flightentity> getFlights() {
-		return flights;
-	}
-
-	public void setFlights(List<Flightentity> flights) {
-		this.flights = flights;
-	}
-
 	public Customer getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public List<Flightentity> getFlights() {
+		return flights;
+	}
+
+	public void setFlights(List<Flightentity> flights) {
+		this.flights = flights;
 	}
 
 	@Override
@@ -67,6 +71,11 @@ public class Itinerary {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Itinerary [customer=" + customer + ", flights=" + flights + "]";
 	}
 	
 	

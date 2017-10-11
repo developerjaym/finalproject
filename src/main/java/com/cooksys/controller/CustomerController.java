@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,17 +26,13 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 	
-	
-	@RequestMapping(value="test")
-	public List<Customer> test(HttpServletResponse response)
+	@RequestMapping(value="createitinerary", method = RequestMethod.POST)
+	public ItineraryDtoOut postItinerary(@RequestBody ItineraryDtoIn itineraryDtoIn, HttpServletResponse response)
 	{
-		return customerService.getAllCredentials();
-	}
-	
-	@RequestMapping(value="testitineraries")
-	public String testitineraries(HttpServletResponse response)
-	{
-		return customerService.getAllItineraries();
+		ItineraryDtoOut result = customerService.postItinerary(itineraryDtoIn);
+		if(result == null)
+			response.setStatus(404);
+		return result;
 	}
 	
 	@RequestMapping(value="login", method = RequestMethod.POST)
@@ -61,14 +58,6 @@ public class CustomerController {
 		if(results == null || results.isEmpty())
 			response.setStatus(404);
 		return results;
-	}
-	@RequestMapping(value="itinerary", method = RequestMethod.POST)
-	public ItineraryDtoOut addItinerary(@RequestBody ItineraryDtoIn itineraryDtoIn, HttpServletResponse response)
-	{
-		ItineraryDtoOut result = customerService.addItinerary(itineraryDtoIn);
-		if(result == null)
-			response.setStatus(404);
-		return result;
 	}
 	
 	
