@@ -3,7 +3,7 @@
 	<div class="formtitle">
             {{flight.departuretime}}:00pm - {{$ctrl.getArrivalTime(flight)}}:00pm
 		<div class="formsubtitle">
-            <div>{{flight.flightTime}} hours</div>
+            <div>{{flight.flightTime}} hour<span ng-hide="$ctrl.hidePlural(flight.flightTime)">s</span></div>
 		</div>
 	</div>
 	<div class="formbody">

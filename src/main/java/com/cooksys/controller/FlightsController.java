@@ -37,6 +37,8 @@ public class FlightsController {
 	@RequestMapping("/search")
 	public ArrayList<ItineraryDtoOut> getSearchResults(@RequestParam("originCityName") String originCityName, @RequestParam("destinationCityName") String destinationCityName, HttpServletResponse response)
 	{
+		System.out.println("originCityName: " + originCityName);
+		System.out.println("destinationCityName: " + destinationCityName);
 		ArrayList<ItineraryDtoOut> results = flightService.getSearchResults(originCityName, destinationCityName);
 		if(results == null || results.isEmpty())
 			response.setStatus(404);

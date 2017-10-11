@@ -13,6 +13,13 @@ angular.module('flightApp').controller('viewFlightController', ['viewFlightServi
             this.flights = succeedResponse.data
         })
 
+        this.hidePlural = (number) => {
+            if(number != 1)
+                return false;
+            else
+                return true
+        }
+
         this.getArrivalTime = (flight)=>{
             return flight.departuretime+flight.flightTime
         }

@@ -4,24 +4,39 @@ angular.module('flightApp').controller('viewItineraryController', ['mapService',
         //this.itineraries = [new Itinerary([]), new Itinerary([])]
         this.itineraries = []
 
-        // if the user wants the history
-        viewItineraryService.getHistory().then((succeedResponse) => {
-            console.dir("ITINERARIES: " + succeedResponse.data)
-            this.itineraries = succeedResponse.data
-        })
-
-        //if the user wants search results
-        // viewItineraryService.getResults('some query').then((succeedResponse) => {
-        //     console.dir("ITINERARIES: " + succeedResponse.data)
-        //     this.itineraries = succeedResponse.data
-        // })
+        
+        this.isBookItHidden = false;
 
 
+       
+        if(userDataService.searchResults) //if the user wants search results
+        {
+            this.isBookItHidden = false;
+            this.itineraries = userDataService.searchResults
+        }
+        else// if the user wants the history
+        {
+            this.isBookItHidden = true;
+            viewItineraryService.getHistory().then((succeedResponse) => {
+                console.dir("ITINERARIES: " + succeedResponse.data)
+                this.itineraries = succeedResponse.data
+            })
+        }
+        
+
+        this.hidePlural = (number) => {
+            if(number != 1)
+                return false;
+            else
+                return true
+        }
 
         this.bookIt = (itinerary) => {
             //alert("booking requested for " + itinerary)
             viewItineraryService.bookIt(itinerary).then((succeedResponse) => {
-                this.itineraries.push(succeedResponse.data)
+                userDataService.searchResults = undefined;
+                userDataService.reloadIfNecessary('session.history')
+                //this.itineraries.push(succeedResponse.data)
             })
         }
 
@@ -40,6 +55,20 @@ angular.module('flightApp').controller('viewItineraryController', ['mapService',
             const end = this.getArrivalTime(itinerary.flights[itinerary.flights.length-1])
             const total = end-start;
             return (total-this.getTotalFlightTime(itinerary))
+        }
+
+        this.findOrigin = (itinerary) =>{
+            return itinerary.flights[0].origin
+        }
+
+        this.findDestination = (itinerary) =>{
+            return itinerary.flights[itinerary.flights.length-1].destination
+        }
+
+        this.shouldHide = () =>{
+            //alert(userDataService.searchResults);
+            if(userDataService.searchResults)
+                return false;
         }
 
         //I may want other functions to calculate other things

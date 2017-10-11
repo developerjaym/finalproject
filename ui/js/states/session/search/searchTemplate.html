@@ -1,5 +1,6 @@
 <div class="jay-box">
-        <div class="formtitle">Search</div>
+        <div class="formtitle" ng-hide="$ctrl.displayUhOh">Search</div>
+        <div class="formtitle" ng-hide="!$ctrl.displayUhOh">Search For Something Else</div>
         <div class="formsubtitle">Today's Flights</div>
         <div class="formbody searchbody">
                 <div class="dropdown">
@@ -24,5 +25,7 @@
                         </div>
                 </div>
         </div>
-        <div class="formfooter"> <button type="submit" class="formbutton" ng-click="$ctrl.search()">Search</button></div>
+        <div class="formfooter"> 
+                <button type="submit" class="formbutton" ng-click="$ctrl.search()">Search</button>
+        </div>
 </div>

@@ -69,17 +69,26 @@ public class FlightService {
 				// zero: the first argument is equal to
 				// a positive integer: athe first argument is greater than the
 				// second.
-//				if (o1.totaltime > o2.totaltime)
-//					return 1;
-//				else if (o1.totaltime == o2.totaltime)
-//					return 0;
-//				else
+				if (getTotalTime(o1) > getTotalTime(o2))
+					return 1;
+				else if (getTotalTime(o1) == getTotalTime(o2))
+					return 0;
+				else
 					return -1;
 			}
 
 		});
 
 		return results;
+	}
+
+	protected long getTotalTime(ItineraryDtoOut o1) {
+		long totalTime = 0L;
+		for(FlightDto f : o1.getFlights())
+		{
+			totalTime = totalTime + f.getFlightTime();
+		}
+		return totalTime;
 	}
 
 }

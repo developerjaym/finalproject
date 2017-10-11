@@ -1,5 +1,5 @@
 angular.module('flightApp').controller('searchController', ['searchService', 'userDataService', '$state',
-    function (tweetService, userDataService, $state) {
+    function (searchService, userDataService, $state) {
 
         this.content = new Query("MEMPHIS", "NASHVILLE")
         // this.createNewTweet = () => {
@@ -17,8 +17,22 @@ angular.module('flightApp').controller('searchController', ['searchService', 'us
         //     }
         // }
 
+        this.displayUhOh = false;
+
         this.search = () =>{
-            alert("To: " + this.content.getTo() + "\nFrom: " + this.content.getFrom());
+            alert("To: " + this.content.to + "\nFrom: " + this.content.from);
+            if(this.content.to === this.content.from)
+                alert("You can't go from yourself to yourself");
+            searchService.search(this.content.from, this.content.to).then((succeedResponse) => {
+                //this.itineraries.push(succeedResponse.data)
+                userDataService.searchResults = succeedResponse.data;
+                this.displayUhOh = false;
+                userDataService.reloadIfNecessary('session.history');//session.search
+            }, (error)=>{
+                //alert("404")
+                this.displayUhOh = true;
+            })  
+            
         }
 
         if (!userDataService.loggedIn()) {

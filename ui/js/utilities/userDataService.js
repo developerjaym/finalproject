@@ -40,6 +40,7 @@ angular.module('flightApp').service('userDataService', ['$state', function ($sta
         return cred
     }
 
+    this.searchResults = undefined;
 
     // this.sessionTypeEnum = {
     //     DOCUMENT: 'DOCUMENT'
@@ -68,7 +69,7 @@ angular.module('flightApp').service('userDataService', ['$state', function ($sta
                 this.setSessionTitle('Search For Flights')
                 break;    
             case 'session.history':
-                this.setSessionTitle('Your Past Itineraries')
+                this.setSessionTitle('Itineraries')
                 break;     
             case 'session.results':
                 this.setSessionTitle('Search Results')

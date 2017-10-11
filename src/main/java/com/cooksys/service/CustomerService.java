@@ -74,6 +74,8 @@ public class CustomerService {
 		if(customer == null || customer.getHistory() == null)
 			return null;
 		System.out.println("Customer " + customer.getHistory().size());
+		
+		
 		return itineraryMapper.toDtoOuts(customer.getHistory());//Arrays.asList(customer.getHistory()));
 	}
 

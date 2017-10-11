@@ -1,26 +1,26 @@
 <div class="jay-box" ng-repeat="itinerary in $ctrl.itineraries">
 	<div class="formtitle">
-		Itinerary
+		{{$ctrl.findOrigin(itinerary) | uppercase}} to {{$ctrl.findDestination(itinerary) | uppercase}}
 		<div class="formsubtitle">
-			<div>Origin to Destination</div>
-		</div>
-	</div>
-	<div class="formbody">
-		<div>
-			Total flight time: {{$ctrl.getTotalFlightTime(itinerary)}}
-		</div>
-		<div>
-			Total layover time: {{$ctrl.getTotalLayoverTime(itinerary)}}
-		</div>
-	</div>
-
-	<div ng-repeat="flight in itinerary.flights">
-		<div class="formtitle">
-			Then
-			<div class="formsubtitle">
-				<div>{{flight.flightTime}} hours</div>
+			<div>
+				{{$ctrl.getTotalFlightTime(itinerary)}} hour<span ng-hide="$ctrl.hidePlural($ctrl.getTotalFlightTime(itinerary))">s</span> in the air
+			</div>
+			<div>
+				{{$ctrl.getTotalLayoverTime(itinerary)}} hour<span ng-hide="$ctrl.hidePlural($ctrl.getTotalLayoverTime(itinerary))">s</span> on the ground
 			</div>
 		</div>
+	</div>
+	<!-- <div class="formbody">
+		
+	</div> -->
+
+	<div ng-repeat="flight in itinerary.flights">
+		<!-- <div class="formtitle">
+			Then
+			<div class="formsubtitle">
+				<div>{{flight.flightTime}} hour(s)</div>
+			</div>
+		</div> -->
 		<div class="formbody">
 			<div>{{flight.origin | uppercase}} ⇨ {{flight.destination | uppercase}}</div>
 
@@ -29,8 +29,8 @@
 		</div>
 	</div>
 	<div class="formfooter">
-		<button class="formbutton" ng-click="$ctrl.bookIt(itinerary)">Book It (if searching for flights)</button>
-		<!-- <button class="formbutton" ng-click="$ctrl.viewMap(itinerary)">View Map</button> -->
-		<a class="formbutton" href="http://localhost:8080/other.html">View Map</a>
+		<button class="formbutton" ng-click="$ctrl.bookIt(itinerary)" ng-hide="$ctrl.isBookItHidden">Book It</button>
+		<button class="formbutton" ng-click="$ctrl.viewMap(itinerary)">View Map</button>
+		<!-- <a class="formbutton" href="http://localhost:8080/other.html">View Map</a> -->
 	</div>
 </div>

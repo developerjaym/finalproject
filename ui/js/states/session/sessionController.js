@@ -74,18 +74,22 @@ angular.module('flightApp').controller('sessionController', ['userDataService', 
 
 
         this.viewFlights = () => {
+            userDataService.searchResults = undefined;
             userDataService.reloadIfNecessary('session.flight')
         }
 
         this.search = () => {
+            userDataService.searchResults = undefined;
             userDataService.reloadIfNecessary('session.search')
         }
 
         this.viewHistory = () => {
+            userDataService.searchResults = undefined;
             userDataService.reloadIfNecessary('session.history')
         }
 
         this.logout = () => {
+            userDataService.searchResults = undefined;
             userDataService.logout()
             userDataService.reloadIfNecessary('title.login')
         }
