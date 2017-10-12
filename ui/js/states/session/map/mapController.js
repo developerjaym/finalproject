@@ -2,6 +2,11 @@
 angular.module('flightApp')
   .controller('mapController', ['mapService', 'userDataService', '$state',
     function (mapService, userDataService, $state) {
+      
+      if (!userDataService.loggedIn()) {
+        $state.go('title.login')
+    }
+      
       //35.5175, -86.5804
       this.map = { center: { latitude: 35.5175, longitude: -86.5804 }, zoom: 7 };
 
@@ -72,6 +77,22 @@ angular.module('flightApp')
             lng: -90.0490
           },
         }
+        // let x;
+        // for(x in this.citymap)
+        // {
+        //   let firstChar = x.charAt(0);
+        //   let name = x.toLowerCase();
+        //   name = firstChar + name.substr(1)
+        //   console.dir("adjust name: " + name)
+        //   mapService.getMarkerByCityName(name).then((succeedResponse)=>{
+        //     console.dir("RESPONSE " + JSON.stringify(succeedResponse.data))
+        //     this.citymap[x].lat = succeedResponse.data.latitude
+        //     this.citymap[x].lng = succeedResponse.data.longitude
+        //   })
+        // }
+        
+        
+
 
       this.markers = this.cities.reduce((previouslyReturned, currentCity) => {
         let newMarker = this.citymap[currentCity]
@@ -94,7 +115,7 @@ angular.module('flightApp')
         this.paths2.push([[this.citymap[flight.origin].lat , this.citymap[flight.origin].lng], [this.citymap[flight.destination].lat , this.citymap[flight.destination].lng]])//origin then destination
         
       })
-
+      
 
     }])
 

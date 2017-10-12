@@ -163,8 +163,10 @@ class Graph//Tennessee
 					p.addEdge(ed);//fill this new path with the beginnings of the previous branch
 				});
 				p.addEdge(edge);//put the most recent edge into the 'branch'
-				if(currentPath.getEdges().isEmpty() || (edge.getCorrespondingObject().getDeparturetime()+edge.getCorrespondingObject().getFlightTime()) > currentPath.getEdges().get(currentPath.getEdges().size()-1).getCorrespondingObject().getDeparturetime())
-				{//knock out flights that aren't at the right time
+				if(currentPath.getEdges().isEmpty() 
+						|| 
+					(edge.getCorrespondingObject().getDeparturetime()/*+edge.getCorrespondingObject().getFlightTime()*/) > (currentPath.getEdges().get(currentPath.getEdges().size()-1).getCorrespondingObject().getDeparturetime()+ currentPath.getEdges().get(currentPath.getEdges().size()-1).getCorrespondingObject().getFlightTime()))
+				{//knock out flights that aren't at the right time (edge (the new flight being added) must take off AFTER the previously-added flight has landed
 					paths.add(p);//add this path to our list of acceptable paths
 					visited.add(edge.getStart());//to prevent it from trying to fly me around the state a bunch for no reason
 					return;

@@ -12,7 +12,17 @@ angular.module('flightApp').controller('viewItineraryController', ['searchServic
         {
             this.isBookItHidden = false;
             this.itineraries = userDataService.searchResults
-            //$interval(searchService.search, 5000);
+            let x = $interval(()=>{
+                searchService.search().then((succeedResponse)=>{
+                    userDataService.searchResults = succeedResponse.data;
+                    userDataService.reloadIfNecessary('session.history')
+                }, (error)=>{
+                    userDataService.searchResults = [];
+                    $interval.cancel(x)
+                    userDataService.reloadIfNecessary('session.search')
+                })
+                
+            }, 5000);
         }
         else// if the user wants the history
         {
@@ -77,6 +87,10 @@ angular.module('flightApp').controller('viewItineraryController', ['searchServic
             //go to a map state
             userDataService.currentItinerary = itinerary;
             userDataService.reloadIfNecessary('session.map')
+        }
+
+        if (!userDataService.loggedIn()) {
+            $state.go('title.login')
         }
 
     }])

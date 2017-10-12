@@ -3,7 +3,8 @@ angular.module('flightApp').service('mapService', ['userDataService', '$http', f
     this.getMarkerByCityName = (name)=> {
         return $http
           .get(`http://localhost:8000/location/name`, { params: { name } })
-          .then(result => result.data)
+          //.then(result => result.data)
+          //longitude, latitude, city
       }
 
       

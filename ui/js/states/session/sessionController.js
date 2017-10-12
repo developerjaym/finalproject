@@ -94,17 +94,8 @@ angular.module('flightApp').controller('sessionController', ['userDataService', 
             userDataService.reloadIfNecessary('title.login')
         }
 
-        if (userDataService.loggedIn()) {
-            
-            // userListService.getFollowers().then((succeedResponse) => {
-            //     userDataService.followersNum = succeedResponse.data.length
-            // })
-
-            // userListService.getFollowing().then((succeedResponse) => {
-            //     userDataService.followingNum = succeedResponse.data.length
-            // })
-        } else {
-            // $state.go('title.login')
+        if (!userDataService.loggedIn()) {
+            $state.go('title.login')
         }
 
     }

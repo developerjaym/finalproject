@@ -1,26 +1,11 @@
 angular.module('flightApp').controller('searchController', ['searchService', 'userDataService', '$state',
     function (searchService, userDataService, $state) {
 
-        this.content = new Query("MEMPHIS", "NASHVILLE")
-        // this.createNewTweet = () => {
-        //     if (this.content.length < 255) {
-        //         // new Audio('shriek.mp3').play()
-        //         tweetService.createNewTweet(userDataService.buildTweet(this.content)).then((succeedResponse) => {
-        //             userDataService.activeFeed = userDataService.feedTypeEnum.MAIN
-        //             userDataService.feedDependency = undefined
-        //             userDataService.reloadIfNecessary('session.feed', 'My ');
-        //         }, (errorResponse) => {
-        //             alert('Error: ' + errorResponse.status)
-        //         })
-        //     } else {
-        //         this.content = 'Your Message Is Too Long'
-        //     }
-        // }
+        this.content = new Query("MEMPHIS", "NASHVILLE")//filler
 
         this.displayUhOh = false;
 
         this.search = () =>{
-            alert("To: " + this.content.to + "\nFrom: " + this.content.from);
             if(this.content.to === this.content.from)
                 alert("You can't go from yourself to yourself");
             searchService.search(this.content.from, this.content.to).then((succeedResponse) => {
@@ -29,14 +14,14 @@ angular.module('flightApp').controller('searchController', ['searchService', 'us
                 this.displayUhOh = false;
                 userDataService.reloadIfNecessary('session.history');//session.search
             }, (error)=>{
-                //alert("404")
+                //alert("No such flights available")
                 this.displayUhOh = true;
             })  
             
         }
 
         if (!userDataService.loggedIn()) {
-            // $state.go('title.login')
+            $state.go('title.login')
         }
     }
 ])

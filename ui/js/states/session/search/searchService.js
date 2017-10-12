@@ -5,7 +5,6 @@ angular.module('flightApp').service('searchService', ['userDataService', '$http'
 
     this.search = (from, to) => {
 
-        console.dir("searching..." + from + " to " + to)
         if (!from)
             from = this.lastFrom
         else
@@ -15,9 +14,6 @@ angular.module('flightApp').service('searchService', ['userDataService', '$http'
             to = this.lastTo
         else
             this.lastTo = to
-
-            
-
         return $http.get('http://localhost:8000/flights/search?originCityName=' + from + "&destinationCityName=" + to)
     }
 

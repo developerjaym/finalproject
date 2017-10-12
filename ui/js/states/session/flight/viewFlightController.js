@@ -1,11 +1,6 @@
 angular.module('flightApp').controller('viewFlightController', ['viewFlightService', 'userDataService', '$state', '$interval',
     function(viewFlightService, userDataService, $state, $interval){
 
-        // this.submission = {}//for posting something
-        //do submission stuff later
-
-        
-        // this.username = userDataService.credentials.getUsername()
         this.flights = []
 
         viewFlightService.getFlightList().then((succeedResponse)=>{
@@ -31,7 +26,11 @@ angular.module('flightApp').controller('viewFlightController', ['viewFlightServi
                 this.flights = succeedResponse.data
             })
         }
+        if (!userDataService.loggedIn()) {
+            $state.go('title.login')
+        }
 
+        
     }])
 
     

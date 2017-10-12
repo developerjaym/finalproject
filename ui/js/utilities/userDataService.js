@@ -1,4 +1,4 @@
-angular.module('flightApp').service('userDataService', ['$state', function ($state) {
+angular.module('flightApp').service('userDataService', ['$state', '$window', function ($state, $window) {
 
     this.credentials = new Credentials(undefined, undefined)
 
@@ -32,6 +32,7 @@ angular.module('flightApp').service('userDataService', ['$state', function ($sta
     this.logout = () => {
         this.credentials.username = undefined
         this.credentials.password = undefined
+        $window.location.reload()
     }
 
     this.buildCustomer = (username, password) => {
