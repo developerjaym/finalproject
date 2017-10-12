@@ -1,4 +1,4 @@
-angular.module('flightApp', ['ui.router', 'xeditable']).run(function (editableOptions) {
+angular.module('flightApp', ['ui.router', 'xeditable', 'ngMap']).run(function (editableOptions) {
     editableOptions.theme = 'bs3';
 }).config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
@@ -69,7 +69,7 @@ angular.module('flightApp', ['ui.router', 'xeditable']).run(function (editableOp
             // .state(resultsState)
             .state(mapState)
 
-        // $urlRouterProvider.otherwise('/title/login')
-        $urlRouterProvider.otherwise('/session/map')
+        $urlRouterProvider.otherwise('/title/login')
+        // $urlRouterProvider.otherwise('/session/map')
     }
 ])

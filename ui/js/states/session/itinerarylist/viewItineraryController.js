@@ -1,5 +1,5 @@
-angular.module('flightApp').controller('viewItineraryController', ['mapService', 'viewItineraryService', 'userDataService', '$state',
-    function (mapService, viewItineraryService, userDataService, $state) {
+angular.module('flightApp').controller('viewItineraryController', ['viewItineraryService', 'userDataService', '$state',
+    function (viewItineraryService, userDataService, $state) {
 
         //this.itineraries = [new Itinerary([]), new Itinerary([])]
         this.itineraries = []
@@ -75,6 +75,7 @@ angular.module('flightApp').controller('viewItineraryController', ['mapService',
 
         this.viewMap = (itinerary) => {
             //go to a map state
+            userDataService.currentItinerary = itinerary;
             userDataService.reloadIfNecessary('session.map')
         }
 

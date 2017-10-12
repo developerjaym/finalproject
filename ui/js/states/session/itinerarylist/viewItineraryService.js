@@ -15,9 +15,6 @@ angular.module('flightApp').service('viewItineraryService', ['userDataService', 
             flights: itinerary.flights,
             credentials: userDataService.credentials
         }
-        console.dir("itin " + itineraryDtoIn.credentials.username)
-        console.dir("itin " + itineraryDtoIn.credentials.password)
-        console.dir("itin " + itineraryDtoIn.flights[0])
         return $http.post('http://localhost:8000/customers/createitinerary/', itineraryDtoIn)
     }
 }])

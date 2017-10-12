@@ -9,13 +9,13 @@ angular.module('flightApp').service('userDataService', ['$state', function ($sta
 
     this.loggedIn = () => (this.credentials.username !== undefined && this.credentials.password !== undefined)
 
-    // this.followersNum = 0
-    // this.followingNum = 0
+    this.currentItinerary = undefined;
+
+    //this.locations = ["MEMPHIS", "NASHVILLE"]
+    //console.dir(this.locations)
 
     this.sessionTitleEnum = {
-        DOCUMENT: 'Document',
         FLIGHT: 'Flights',
-        ISSUER: 'Issuer',
         SEARCH: 'Search Results'
     }
 
@@ -42,25 +42,7 @@ angular.module('flightApp').service('userDataService', ['$state', function ($sta
 
     this.searchResults = undefined;
 
-    // this.sessionTypeEnum = {
-    //     DOCUMENT: 'DOCUMENT'
-    //     MAIN: 'MAIN',
-    //     CUSTOM: 'CUSTOM',
-    //     SINGLE: 'SINGLE',
-    //     CONTEXT: 'CONTEXT',
-    //     USER: 'USER',
-    //     HASHTAG: 'HASHTAG'
-    // }
-
-    // this.activeFeed = this.feedTypeEnum.MAIN
-    // this.feedDependency = undefined
-
-
-    // this.activeUserList = this.userListTypeEnum.ALL
-    // this.userListDependency = undefined
-
     this.reloadIfNecessary = (stateName, optionalPrefix) => {
-        console.dir("Reloading")
         switch (stateName) {
             case 'session.flight':
                 this.setSessionTitle('View All Flights')

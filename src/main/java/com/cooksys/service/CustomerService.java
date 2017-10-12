@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cooksys.dto.CredentialsDto;
+import com.cooksys.dto.FlightDto;
 import com.cooksys.dto.ItineraryDtoIn;
 import com.cooksys.dto.ItineraryDtoOut;
 import com.cooksys.entity.Credentials;
 import com.cooksys.entity.Customer;
+import com.cooksys.entity.Flightentity;
 import com.cooksys.entity.Itinerary;
 import com.cooksys.mapper.ItineraryMapper;
 //import com.cooksys.mapper.JayMapper;
@@ -75,16 +77,33 @@ public class CustomerService {
 			return null;
 		System.out.println("Customer " + customer.getHistory().size());
 		
+		List<ItineraryDtoOut> results = itineraryMapper.toDtoOuts(customer.getHistory());
+		for(int r = 0; r < results.size(); r++)
+		{
+			for(int i = 0; i < results.get(r).getFlights().size(); i++)
+			{//some mapping problem, I'm too scared of breaking anything to clean install
+				results.get(r).getFlights().get(i).setDeparturetime(customer.getHistory().get(r).getFlights().get(i).getDeparturetime());
+			}
+		}
 		
-		return itineraryMapper.toDtoOuts(customer.getHistory());//Arrays.asList(customer.getHistory()));
+		
+		return results;//itineraryMapper.toDtoOuts(customer.getHistory());//Arrays.asList(customer.getHistory()));
 	}
 
 	public ItineraryDtoOut postItinerary(ItineraryDtoIn itineraryDtoIn) {
 		Customer customer = customerRepository.findByCredentialsUsernameAndCredentialsPassword(itineraryDtoIn.getCredentials().getUsername(), itineraryDtoIn.getCredentials().getPassword());
 		if(customer == null)
 			return null;
-		
+		System.out.println("Itinerary dto in: " + itineraryDtoIn);
+		System.out.println("  A departure time: " + itineraryDtoIn.getFlights().get(0).getDeparturetime());
 		Itinerary itinerary = itineraryMapper.toItinerary(itineraryDtoIn);
+		System.out.println("Itinerary: " + itineraryDtoIn);
+		System.out.println("  B departure time: " + itinerary.getFlights().get(0).getDeparturetime());
+		for(int i = 0; i < itinerary.getFlights().size(); i++)
+		{//it's not saving properly
+			itinerary.getFlights().get(i).setDeparturetime(itineraryDtoIn.getFlights().get(i).getDeparturetime());
+		}
+		System.out.println("  C departure time: " + itinerary.getFlights().get(0).getDeparturetime());
 		itinerary.setCustomer(customer);
 		final Itinerary it = itineraryRepository.saveAndFlush(itinerary);
 		
