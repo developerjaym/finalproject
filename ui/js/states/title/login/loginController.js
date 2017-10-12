@@ -21,7 +21,6 @@ angular.module('flightApp').controller('loginController', ['loginService', 'user
                 //userDataService.feedDependency = undefined
                 userDataService.reloadIfNecessary('session.flight')
             }, (errorResponse) => {
-                console.dir(errorResponse.status)
                     this.submission.username = ''
                     this.submission.password = ''
                     this.usernameErrorCss = "red"

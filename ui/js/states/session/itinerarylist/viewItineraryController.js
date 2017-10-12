@@ -1,7 +1,6 @@
-angular.module('flightApp').controller('viewItineraryController', ['viewItineraryService', 'userDataService', '$state',
-    function (viewItineraryService, userDataService, $state) {
+angular.module('flightApp').controller('viewItineraryController', ['searchService', 'viewItineraryService', 'userDataService', '$state', '$interval',
+    function (searchService, viewItineraryService, userDataService, $state, $interval) {
 
-        //this.itineraries = [new Itinerary([]), new Itinerary([])]
         this.itineraries = []
 
         
@@ -13,14 +12,15 @@ angular.module('flightApp').controller('viewItineraryController', ['viewItinerar
         {
             this.isBookItHidden = false;
             this.itineraries = userDataService.searchResults
+            //$interval(searchService.search, 5000);
         }
         else// if the user wants the history
         {
             this.isBookItHidden = true;
             viewItineraryService.getHistory().then((succeedResponse) => {
-                console.dir("ITINERARIES: " + succeedResponse.data)
                 this.itineraries = succeedResponse.data
             })
+           
         }
         
 

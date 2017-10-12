@@ -4,9 +4,9 @@
            Test {{city}}
     </button> -->
     <ng-map zoom="7" center="35.5175, -86.5804">
-        <marker ng-repeat="marker in $ctrl.markers" position="{{marker.position}}" title="{{marker.position}}">
+        <marker ng-repeat="marker in $ctrl.othermarkers" position="{{marker.position}}">
         </marker>
-        <shape ng-repeat="path in $ctrl.paths" name="polyline" path="{{path}}" stroke-color="red">
+        <shape ng-repeat="path in $ctrl.paths2" name="polyline" path="{{path}}" stroke-color="{{$ctrl.getColor(path)}}">
         </shape>
         <!-- <shape ng-repeat="mapPath in $ctrl.paths" name="polyline" path="{{mapPath.path}}" stroke-color="{{mapPath.strokeColor}}"
             stroke-opacity="{{mapPath.strokeOpacity}}" stroke-weight="{{mapPath.strokeWeight}}" geodesic="{{mapPath.geodesic}}">

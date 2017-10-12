@@ -9,7 +9,6 @@ angular.module('flightApp').controller('viewFlightController', ['viewFlightServi
         this.flights = []
 
         viewFlightService.getFlightList().then((succeedResponse)=>{
-            console.dir("FLIGHTS: " + succeedResponse.data)
             this.flights = succeedResponse.data
         })
 
@@ -24,12 +23,11 @@ angular.module('flightApp').controller('viewFlightController', ['viewFlightServi
             return flight.departuretime+flight.flightTime
         }
 
-        $interval(()=>{this.reload()}, 500000);
+        $interval(()=>{this.reload()}, 5000);
         
 
         this.reload = () =>{
             viewFlightService.getFlightList().then((succeedResponse)=>{
-                console.dir("reloading")
                 this.flights = succeedResponse.data
             })
         }
